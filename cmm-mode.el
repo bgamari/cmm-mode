@@ -36,17 +36,20 @@
     "goto" "if" "import" "in," "invariant" "invisible" "jump" "little" "memsize"
     "pragma" "reads" "register," "return" "returns" "section" "semi" "span"
     "stackdata" "switch" "target" "targets" "to," "typedef" "unicode" "unwinds"
-    "writes")
-  "Cmm keywords.")
+    "writes"))
 
-(defvar cmm-keywords-regexp (regexp-opt cmm-keywords 'words))
+(defvar cmm-types
+  '("bits8" "bits16" "bits32" "bits64" "float32" "float64" "I8" "I16" "I32"
+    "CInt" "CLong" "I64" "CInt" "CLong" "L_" "F_" "D_"))
+
+(defvar cmm-font-lock-defaults
+      `((
+         ( ,(regexp-opt cmm-types 'words) . font-lock-type-face)
+         ( ,(regexp-opt cmm-keywords 'words) . font-lock-keyword-face)
+         )))
 
 (setq cmm-keywords nil)
-
-(setq cmm-font-lock-keywords
-      `(
-        (,cmm-keywords-regexp . font-lock-keyword-face)
-        ))
+(setq cmm-types nil)
 
 (defvar cmm-mode-syntax-table
   (let ((st (make-syntax-table)))
@@ -62,9 +65,6 @@
   "A major mode for editing Cmm files."
 
   ;; code for syntax highlighting
-  (setq font-lock-defaults '((cmm-font-lock-keywords)))
-
-  ;; clear memory
-  (setq cmm-keywords-regexp nil))
+  (setq font-lock-defaults cmm-font-lock-defaults))
 
 (provide 'cmm-mode)
