@@ -1,0 +1,8 @@
+# cmm-mode — An emacs major mode for C--
+
+This is an emacs major mode for editing GHC's flavor of
+[C--][wiki]. At this point there is no up-to-date specification
+describing GHC C--'s syntax. For this it's best to use the [source][].
+
+[wiki]: https://en.wikipedia.org/wiki/C--)
+[source]: https://github.com/ghc/ghc/blob/master/compiler/cmm/PprCmm.hs
