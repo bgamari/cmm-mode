@@ -1,3 +1,5 @@
+;;; cmm-mode.el --- Major mode for C-- source code
+
 ;; Copyright (c) 2012, Johan Tibell
 ;; All rights reserved.
 ;;
