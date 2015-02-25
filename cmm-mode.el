@@ -30,6 +30,7 @@
 
 (defvar cmm-mode-hook nil)
 
+;;;###autoload
 (add-to-list 'auto-mode-alist '("\\.cmm\\'" . cmm-mode))
 
 (defvar cmm-keywords
@@ -62,6 +63,7 @@
   "Syntax table for cmm-mode")
 
 ;; define the mode
+;;;###autoload
 (define-derived-mode cmm-mode fundamental-mode
   "Cmm"
   "A major mode for editing Cmm files."
@@ -70,3 +72,5 @@
   (setq font-lock-defaults cmm-font-lock-defaults))
 
 (provide 'cmm-mode)
+
+;;; cmm-mode.el ends here
