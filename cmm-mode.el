@@ -70,3 +70,5 @@
   (setq font-lock-defaults cmm-font-lock-defaults))
 
 (provide 'cmm-mode)
+
+;;; cmm-mode.el ends here
