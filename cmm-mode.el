@@ -28,11 +28,6 @@
 ;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 ;; OF THE POSSIBILITY OF SUCH DAMAGE.
 
-(defvar cmm-mode-hook nil)
-
-;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.cmm\\'" . cmm-mode))
-
 (defvar cmm-keywords
   '("aborts" "align" "aligned" "also" "as" "big" "bits" "byteorder" "case"
     "const," "continuation" "cut" "cuts" "else" "equal" "export" "foreign"
@@ -62,14 +57,19 @@
     st)
   "Syntax table for cmm-mode")
 
-;; define the mode
+(defalias 'cmm-parent-mode
+  (if (fboundp 'prog-mode) 'prog-mode 'fundamental-mode))
+
 ;;;###autoload
-(define-derived-mode cmm-mode fundamental-mode
+(define-derived-mode cmm-mode cmm-parent-mode
   "Cmm"
   "A major mode for editing Cmm files."
 
   ;; code for syntax highlighting
   (setq font-lock-defaults cmm-font-lock-defaults))
+
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.cmm\\'" . cmm-mode))
 
 (provide 'cmm-mode)
 
