@@ -28,6 +28,8 @@
 ;; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 ;; OF THE POSSIBILITY OF SUCH DAMAGE.
 
+;;; Code:
+
 (defvar cmm-keywords
   '("aborts" "align" "aligned" "also" "as" "big" "bits" "byteorder" "case"
     "const," "continuation" "cut" "cuts" "else" "equal" "export" "foreign"
@@ -41,13 +43,8 @@
     "CInt" "CLong" "I64" "CInt" "CLong" "L_" "F_" "D_"))
 
 (defvar cmm-font-lock-defaults
-      `((
-         ( ,(regexp-opt cmm-types 'words) . font-lock-type-face)
-         ( ,(regexp-opt cmm-keywords 'words) . font-lock-keyword-face)
-         )))
-
-(setq cmm-keywords nil)
-(setq cmm-types nil)
+  `(((,(regexp-opt cmm-types 'words) . font-lock-type-face)
+     (,(regexp-opt cmm-keywords 'words) . font-lock-keyword-face))))
 
 (defvar cmm-mode-syntax-table
   (let ((st (make-syntax-table)))
@@ -61,11 +58,8 @@
   (if (fboundp 'prog-mode) 'prog-mode 'fundamental-mode))
 
 ;;;###autoload
-(define-derived-mode cmm-mode cmm-parent-mode
-  "Cmm"
+(define-derived-mode cmm-mode cmm-parent-mode "Cmm"
   "A major mode for editing Cmm files."
-
-  ;; code for syntax highlighting
   (setq font-lock-defaults cmm-font-lock-defaults))
 
 ;;;###autoload
